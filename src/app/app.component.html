@@ -1,0 +1,53 @@
+<div class="container">
+  <h4>Student Details</h4>
+  <button type="button" class="btn btn-primary" (click)="OpenPopup()" style="float: right;">ShowData</button>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Country</th>
+        <th>Mobile</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of StudentsData">
+        <td>{{student.Id}}</td>
+        <td>{{student.Name}}</td>
+        <td>{{student.Country}}</td>
+        <td>{{student.Mobile}}</td>
+        <td><button class="btn btn-danger" (click)="deleteStudent(student.Id)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Student Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          (click)="closePopup()">X</button>
+      </div>
+      <div class="modal-body">
+        <form #frmRegister="ngForm">
+          <label for="id">Id :</label>
+          <input type="text" id="fId" name="Id" ngModel #Id="ngModel" placeholder="Id">
+          <label for="fname">Name :</label>
+          <input type="text" id="fname" name="Name" ngModel #Name="ngModel" placeholder="Your name">
+          <label for="country">Country :</label>
+          <select id="country" name="Country" ngModel #Country="ngModel">
+            <option value="australia">Australia</option>
+            <option value="canada">Canada</option>
+            <option value="usa">USA</option>
+          </select>
+          <label for="Mobile">mobile :</label>
+          <input type="text" id="mobile" name="Mobile" ngModel #Mobile="ngModel" placeholder="Mobile">
+          <input type="Add" value="Add" (click)="AddData(frmRegister)">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
